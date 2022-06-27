@@ -4,7 +4,7 @@ export class Store<T> {
     behaviourState$: BehaviorSubject<T>;
 
     constructor(initialState: T) {
-        this.behaviourState$ =  new BehaviorSubject(initialState);
+        this.behaviourState$ =  new BehaviorSubject<T>(initialState);
         this.state$ = this.behaviourState$.asObservable();
     }
 

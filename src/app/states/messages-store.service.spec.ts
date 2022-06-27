@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { MessagesStoreService } from './messages-store.service';
@@ -6,7 +7,9 @@ describe('MessagesStoreService', () => {
   let service: MessagesStoreService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    });
     service = TestBed.inject(MessagesStoreService);
   });
 
@@ -27,7 +30,6 @@ describe('MessagesStoreService', () => {
     service.showErrors('error 1');
     service.state$.subscribe((result) => {
       expect(result.errors).toEqual(['error 1']);
-      console.log(result.errors);
       done();
     });
   });
@@ -47,4 +49,30 @@ describe('MessagesStoreService', () => {
       done();
     });
   });
+
+  it('подписываемся на получения сообщения об ошибках', done => {
+    service.errors$.subscribe(data => {
+      expect(data).toEqual(['error 1']);
+      done();
+    });
+    service.showErrors('error 1');
+  });
+
+
+  it('подписываемся на получения сообщений о предупреждений', done => {
+    service.warns$.subscribe(data => {
+      expect(data).toEqual(['warn 1']);
+      done();
+    });
+    service.showsWarns('warn 1');
+  });
+
+  it('подписываемся на получения сообщений ', done => {
+    service.messages$.subscribe(data => {
+      expect(data).toEqual(['message 1']);
+      done();
+    });
+    service.showMessages('message 1');
+  });
+
 });
