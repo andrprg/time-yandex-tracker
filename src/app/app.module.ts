@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ApiPrefixInterceptor } from './data/interceptors/api-prefix.interceptor';
 import { HeaderInterceptor } from './data/interceptors/header.interceptor';
-import { TestComponent } from './presantation/pages/test/test.component';
 import { MessagesComponent } from './presantation/components/messages/messages.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
@@ -14,7 +13,7 @@ import { LoadingComponent } from './presantation/components/loading/loading.comp
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [AppComponent, TestComponent, MessagesComponent, LoadingComponent],
+  declarations: [AppComponent, MessagesComponent, LoadingComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
